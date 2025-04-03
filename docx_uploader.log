@@ -1,0 +1,105 @@
+2025-04-03 10:45:11,906 - INFO - Starting document uploader service
+2025-04-03 10:45:12,009 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.102s]
+2025-04-03 10:45:12,009 - INFO - Successfully connected to Elasticsearch
+2025-04-03 10:45:12,010 - INFO - Processing existing files...
+2025-04-03 10:45:12,013 - INFO - Watching for new .docx files in C:\elasticsearch-upload\Mimiketech uploads
+2025-04-03 10:45:12,013 - INFO - Press Ctrl+C to stop
+2025-04-03 10:46:13,520 - INFO - New file detected: Elasticsearch Architecture Best Practices.docx
+2025-04-03 10:46:14,522 - INFO - Processing file: Elasticsearch Architecture Best Practices.docx
+2025-04-03 10:46:14,559 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.024s]
+2025-04-03 10:46:14,626 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.067s]
+2025-04-03 10:46:14,628 - INFO - Successfully processed Elasticsearch Architecture Best Practices.docx (ID: f-wd_JUBUJEGek9d7dE-)
+2025-04-03 10:46:14,628 - INFO - New file detected: Create Visualizations.docx
+2025-04-03 10:46:15,629 - INFO - Processing file: Create Visualizations.docx
+2025-04-03 10:46:15,661 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.021s]
+2025-04-03 10:46:15,690 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.029s]
+2025-04-03 10:46:15,693 - INFO - Successfully processed Create Visualizations.docx (ID: gOwd_JUBUJEGek9d8dGN)
+2025-04-03 10:46:15,693 - INFO - New file detected: Paid vs Open vs Free.docx
+2025-04-03 10:46:16,695 - INFO - Processing file: Paid vs Open vs Free.docx
+2025-04-03 10:46:16,721 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.021s]
+2025-04-03 10:46:16,750 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.028s]
+2025-04-03 10:46:16,753 - INFO - Successfully processed Paid vs Open vs Free.docx (ID: gewd_JUBUJEGek9d9dGx)
+2025-04-03 10:55:28,283 - INFO - Starting document uploader service
+2025-04-03 10:55:28,388 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.104s]
+2025-04-03 10:55:28,388 - INFO - Successfully connected to Elasticsearch
+2025-04-03 10:55:28,388 - INFO - Processing existing files...
+2025-04-03 10:55:28,391 - INFO - Watching for new .docx files in C:\elasticsearch-upload\Mimiketech uploads
+2025-04-03 10:55:28,391 - INFO - Press Ctrl+C to stop
+2025-04-03 10:56:11,311 - INFO - New file detected: Service Level Indicator.docx
+2025-04-03 10:56:11,311 - INFO - New file detected: Service Level Indicator.docx
+2025-04-03 10:56:12,312 - INFO - Processing file: Service Level Indicator.docx
+2025-04-03 10:56:12,358 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.023s]
+2025-04-03 10:56:12,409 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.074s]
+2025-04-03 10:56:12,441 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.082s]
+2025-04-03 10:56:12,442 - INFO - Successfully processed Service Level Indicator.docx (ID: kO0n_JUBUJEGek9dDAx5)
+2025-04-03 10:56:12,442 - INFO - New file detected: Obs tech 1.docx
+2025-04-03 10:56:12,508 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.098s]
+2025-04-03 10:56:12,508 - ERROR - Error processing Service Level Indicator.docx: [WinError 2] The system cannot find the file specified: 'C:\\elasticsearch-upload\\Mimiketech uploads\\Service Level Indicator.docx' -> 'C:\\elasticsearch-upload\\Mimiketech uploads\\processed\\Service Level Indicator.docx'
+2025-04-03 10:56:12,509 - INFO - New file detected: Obs tech 1.docx
+2025-04-03 10:56:13,444 - INFO - Processing file: Obs tech 1.docx
+2025-04-03 10:56:13,479 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.022s]
+2025-04-03 10:56:13,510 - INFO - Processing file: Obs tech 1.docx
+2025-04-03 10:56:13,521 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.042s]
+2025-04-03 10:56:13,523 - INFO - Successfully processed Obs tech 1.docx (ID: ku0n_JUBUJEGek9dEAzH)
+2025-04-03 10:56:13,523 - INFO - New file detected: Security demo script.docx
+2025-04-03 10:56:13,548 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.024s]
+2025-04-03 10:56:13,586 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.038s]
+2025-04-03 10:56:13,587 - ERROR - Error processing Obs tech 1.docx: [WinError 2] The system cannot find the file specified: 'C:\\elasticsearch-upload\\Mimiketech uploads\\Obs tech 1.docx' -> 'C:\\elasticsearch-upload\\Mimiketech uploads\\processed\\Obs tech 1.docx'
+2025-04-03 10:56:13,588 - INFO - New file detected: Security demo script.docx
+2025-04-03 10:56:14,524 - INFO - Processing file: Security demo script.docx
+2025-04-03 10:56:14,559 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.023s]
+2025-04-03 10:56:14,589 - INFO - Processing file: Security demo script.docx
+2025-04-03 10:56:14,600 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.041s]
+2025-04-03 10:56:14,602 - INFO - Successfully processed Security demo script.docx (ID: lO0n_JUBUJEGek9dFAz_)
+2025-04-03 10:56:14,603 - INFO - New file detected: Attack_Discovery_Demo_Talk_Track_With_Images.docx
+2025-04-03 10:56:14,624 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.022s]
+2025-04-03 10:56:14,666 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.042s]
+2025-04-03 10:56:14,667 - ERROR - Error processing Security demo script.docx: [WinError 2] The system cannot find the file specified: 'C:\\elasticsearch-upload\\Mimiketech uploads\\Security demo script.docx' -> 'C:\\elasticsearch-upload\\Mimiketech uploads\\processed\\Security demo script.docx'
+2025-04-03 10:56:14,667 - INFO - New file detected: Attack_Discovery_Demo_Talk_Track_With_Images.docx
+2025-04-03 10:56:15,603 - INFO - Processing file: Attack_Discovery_Demo_Talk_Track_With_Images.docx
+2025-04-03 10:56:15,644 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.020s]
+2025-04-03 10:56:15,668 - INFO - Processing file: Attack_Discovery_Demo_Talk_Track_With_Images.docx
+2025-04-03 10:56:15,683 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.038s]
+2025-04-03 10:56:15,685 - INFO - Successfully processed Attack_Discovery_Demo_Talk_Track_With_Images.docx (ID: rwEn_JUBjyyKBypdGe88)
+2025-04-03 10:56:15,685 - INFO - New file detected: Obs transcript.docx
+2025-04-03 10:56:15,709 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.022s]
+2025-04-03 10:56:15,747 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.038s]
+2025-04-03 10:56:15,748 - ERROR - Error processing Attack_Discovery_Demo_Talk_Track_With_Images.docx: [WinError 2] The system cannot find the file specified: 'C:\\elasticsearch-upload\\Mimiketech uploads\\Attack_Discovery_Demo_Talk_Track_With_Images.docx' -> 'C:\\elasticsearch-upload\\Mimiketech uploads\\processed\\Attack_Discovery_Demo_Talk_Track_With_Images.docx'
+2025-04-03 10:56:15,748 - INFO - New file detected: Obs transcript.docx
+2025-04-03 10:56:16,686 - INFO - Processing file: Obs transcript.docx
+2025-04-03 10:56:16,721 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.023s]
+2025-04-03 10:56:16,749 - INFO - Processing file: Obs transcript.docx
+2025-04-03 10:56:16,782 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.022s]
+2025-04-03 10:56:16,795 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.073s]
+2025-04-03 10:56:16,796 - INFO - Successfully processed Obs transcript.docx (ID: nwEn_JUBjyyKBypdHfB8)
+2025-04-03 10:56:16,796 - INFO - New file detected: Synthetic data.docx
+2025-04-03 10:56:16,865 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.082s]
+2025-04-03 10:56:16,865 - ERROR - Error processing Obs transcript.docx: [WinError 2] The system cannot find the file specified: 'C:\\elasticsearch-upload\\Mimiketech uploads\\Obs transcript.docx' -> 'C:\\elasticsearch-upload\\Mimiketech uploads\\processed\\Obs transcript.docx'
+2025-04-03 10:56:16,866 - INFO - New file detected: Synthetic data.docx
+2025-04-03 10:56:17,797 - INFO - Processing file: Synthetic data.docx
+2025-04-03 10:56:17,845 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.022s]
+2025-04-03 10:56:17,867 - INFO - Processing file: Synthetic data.docx
+2025-04-03 10:56:17,896 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.050s]
+2025-04-03 10:56:17,897 - INFO - Successfully processed Synthetic data.docx (ID: ogEn_JUBjyyKBypdIfDW)
+2025-04-03 10:56:17,898 - INFO - New file detected: Obs demo short script.docx
+2025-04-03 10:56:17,913 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.023s]
+2025-04-03 10:56:17,962 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.049s]
+2025-04-03 10:56:17,963 - ERROR - Error processing Synthetic data.docx: [WinError 2] The system cannot find the file specified: 'C:\\elasticsearch-upload\\Mimiketech uploads\\Synthetic data.docx' -> 'C:\\elasticsearch-upload\\Mimiketech uploads\\processed\\Synthetic data.docx'
+2025-04-03 10:56:17,963 - INFO - New file detected: Obs demo short script.docx
+2025-04-03 10:56:18,899 - INFO - Processing file: Obs demo short script.docx
+2025-04-03 10:56:18,928 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.021s]
+2025-04-03 10:56:18,963 - INFO - Processing file: Obs demo short script.docx
+2025-04-03 10:56:18,972 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.043s]
+2025-04-03 10:56:18,973 - INFO - Successfully processed Obs demo short script.docx (ID: l-0n_JUBUJEGek9dJgwR)
+2025-04-03 10:56:18,974 - INFO - New file detected: Monitoring web app info.docx
+2025-04-03 10:56:18,997 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.023s]
+2025-04-03 10:56:19,042 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.044s]
+2025-04-03 10:56:19,042 - ERROR - Error processing Obs demo short script.docx: [WinError 2] The system cannot find the file specified: 'C:\\elasticsearch-upload\\Mimiketech uploads\\Obs demo short script.docx' -> 'C:\\elasticsearch-upload\\Mimiketech uploads\\processed\\Obs demo short script.docx'
+2025-04-03 10:56:19,043 - INFO - New file detected: Monitoring web app info.docx
+2025-04-03 10:56:19,975 - INFO - Processing file: Monitoring web app info.docx
+2025-04-03 10:56:20,002 - INFO - HEAD https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/ [status:200 duration:0.022s]
+2025-04-03 10:56:20,031 - INFO - POST https://7f5e3429796d45748b57199b8b00f8d2.us-east-1.aws.found.io:443/docstraining4/_doc [status:201 duration:0.029s]
+2025-04-03 10:56:20,033 - INFO - Successfully processed Monitoring web app info.docx (ID: me0n_JUBUJEGek9dKgxC)
+2025-04-03 10:56:20,044 - INFO - Processing file: Monitoring web app info.docx
+2025-04-03 10:56:20,045 - ERROR - Error converting document Monitoring web app info.docx: Package not found at 'C:\elasticsearch-upload\Mimiketech uploads\Monitoring web app info.docx'
+2025-04-03 10:56:20,045 - ERROR - Error processing Monitoring web app info.docx: Package not found at 'C:\elasticsearch-upload\Mimiketech uploads\Monitoring web app info.docx'

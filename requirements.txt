@@ -1,0 +1,5 @@
+flask
+elasticsearch
+python-docx
+werkzeug
+gunicorn

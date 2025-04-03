@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mimiketech Search</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f2ff;  /* Light blue background */
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .result {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+        }
+        .result-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .highlight {
+            background-color: #ffff99;
+        }
+        .result-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .result-actions {
+            margin-top: 10px;
+        }
+        .download-btn {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #34a853;
+            color: white;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        .download-json-btn {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #ea4335;
+            color: white;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+        .loading {
+            display: none;
+            margin: 20px 0;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .action-btn {
+            padding: 10px 15px;
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .list-all-btn {
+            background-color: #fbbc05;
+        }
+        .upload-btn {
+            background-color: #34a853;
+        }
+        .header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Mimiketech Search</h1>
+    </div>
+    
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search documents...">
+        <button id="search-button">Search</button>
+    </div>
+    
+    <div class="button-container">
+        <a href="/list-all" class="action-btn list-all-btn">List All Documents</a>
+        <a href="/upload" class="action-btn upload-btn">Upload New Document</a>
+    </div>
+    
+    <div id="loading" class="loading">Searching...</div>
+    
+    <div id="results"></div>
+    
+    <script>
+        document.getElementById('search-button').addEventListener('click', performSearch);
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        function performSearch() {
+            const query = document.getElementById('search-input').value.trim();
+            if (!query) return;
+            
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+            
+            loading.style.display = 'block';
+            results.innerHTML = '';
+            
+            fetch(`/search?q=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    loading.style.display = 'none';
+                    
+                    if (data.error) {
+                        results.innerHTML = `<p>Error: ${data.error}</p>`;
+                        return;
+                    }
+                    
+                    if (data.hits.length === 0) {
+                        results.innerHTML = '<p>No results found.</p>';
+                        return;
+                    }
+                    
+                    displayResults(data.hits);
+                })
+                .catch(error => {
+                    loading.style.display = 'none';
+                    results.innerHTML = `<p>Error: ${error.message}</p>`;
+                });
+        }
+        
+        function displayResults(hits, isListAll = false) {
+            const results = document.getElementById('results');
+            
+            let resultsHtml = '';
+            if (isListAll) {
+                resultsHtml += `<h2>All Documents (${hits.length})</h2>`;
+            }
+            
+            hits.forEach(hit => {
+                let highlightHtml = '';
+                
+                if (hit.highlights) {
+                    if (hit.highlights.content) {
+                        highlightHtml = hit.highlights.content.join('... ');
+                    } else if (hit.highlights.title) {
+                        highlightHtml = hit.highlights.title.join(' ');
+                    }
+                }
+                
+                resultsHtml += `
+                    <div class="result">
+                        <div class="result-title">${hit.title}</div>
+                        <div class="result-meta">File: ${hit.filename} ${hit.score ? `| Score: ${hit.score.toFixed(2)}` : ''}</div>
+                        ${highlightHtml ? `<div class="result-highlight">${highlightHtml}</div>` : ''}
+                        <div class="result-actions">
+                            <a href="/download/${hit.id}" class="download-btn">Download Text</a>
+                            <a href="/download-json/${hit.id}" class="download-json-btn">Download JSON</a>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            results.innerHTML = resultsHtml;
+        }
+        
+        // Check if we should list all documents on page load
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('listAll') === 'true') {
+            document.addEventListener('DOMContentLoaded', function() {
+                fetch('/list-all')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            document.getElementById('results').innerHTML = `<p>Error: ${data.error}</p>`;
+                            return;
+                        }
+                        
+                        if (data.hits.length === 0) {
+                            document.getElementById('results').innerHTML = '<p>No documents found in the index.</p>';
+                            return;
+                        }
+                        
+                        displayResults(data.hits, true);
+                    })
+                    .catch(error => {
+                        document.getElementById('results').innerHTML = `<p>Error: ${error.message}</p>`;
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
+    
