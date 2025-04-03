@@ -1,108 +1,131 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Mimiketech Search - Upload Document</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #e6f2ff;
-        }
-        .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .upload-form {
-            margin-top: 20px;
-        }
-        .file-input {
-            margin-bottom: 15px;
-        }
-        .submit-btn {
-            padding: 10px 15px;
-            background-color: #4285f4;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 15px;
-            background-color: #34a853;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-        .result-message {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 4px;
-            display: none;
-        }
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        .loading {
-            display: none;
-            text-align: center;
-            margin-top: 20px;
-        }
-        .loading::after {
-            content: "Processing...";
-            color: #666;
-            font-style: italic;
-        }
-    </style>
+    <title>Mimiketech Search - Upload Document</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="{{ logo_path }}" alt="Mimiketech Logo" class="logo">
+            </div>
+            <nav class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/upload" class="nav-link">Upload</a>
+                <a href="/?listAll=true" class="nav-link">All Documents</a>
+            </nav>
+        </div>
+    </header>
+
     <div class="container">
-        <h1>Upload Document</h1>
-        
-        <div class="upload-form">
-            <p>Select a Word document (.docx) to upload and index:</p>
+        <div class="card">
+            <h1>Upload Document</h1>
             
-            <form id="upload-form" enctype="multipart/form-data">
-                <div class="file-input">
-                    <input type="file" name="docfile" id="docfile" accept=".docx" required>
+            <div class="upload-form">
+                <p>Select a Word document (.docx) to upload and index:</p>
+                
+                <div id="drop-area" class="file-input-container">
+                    <label for="docfile" class="file-input-label">
+                        <div class="file-input-icon">
+                            <i class="fas fa-file-upload"></i>
+                        </div>
+                        <div class="file-input-text">
+                            Drag & drop your file here or click to browse
+                        </div>
+                        <input type="file" name="docfile" id="docfile" class="file-input" accept=".docx" required>
+                    </label>
+                    <div id="file-name" class="file-name"></div>
                 </div>
                 
-                <button type="submit" class="submit-btn">Upload & Index</button>
-            </form>
+                <button type="button" id="upload-button" class="submit-btn" disabled>Upload & Index</button>
+            </div>
+            
+            <div id="loading" class="loading">
+                <div class="loading-spinner"></div>
+                <p>Processing your document...</p>
+            </div>
+            
+            <div id="result-message" class="result-message"></div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="/" class="action-button download-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Search
+                </a>
+            </div>
         </div>
-        
-        <div id="loading" class="loading"></div>
-        
-        <div id="result-message" class="result-message"></div>
-        
-        <a href="/" class="back-btn">Back to Search</a>
     </div>
     
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mimiketech Search. All rights reserved.</p>
+        </div>
+    </footer>
+    
     <script>
-        document.getElementById('upload-form').addEventListener('submit', function(e) {
+        const dropArea = document.getElementById('drop-area');
+        const fileInput = document.getElementById('docfile');
+        const fileName = document.getElementById('file-name');
+        const uploadButton = document.getElementById('upload-button');
+        const loading = document.getElementById('loading');
+        const resultMessage = document.getElementById('result-message');
+        
+        // Handle file selection
+        fileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                fileName.textContent = this.files[0].name;
+                uploadButton.disabled = false;
+            } else {
+                fileName.textContent = '';
+                uploadButton.disabled = true;
+            }
+        });
+        
+        // Handle drag and drop events
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
             e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight() {
+            dropArea.classList.add('dragover');
+        }
+        
+        function unhighlight() {
+            dropArea.classList.remove('dragover');
+        }
+        
+        dropArea.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
             
-            const fileInput = document.getElementById('docfile');
+            if (files.length > 0) {
+                fileInput.files = files;
+                fileName.textContent = files[0].name;
+                uploadButton.disabled = false;
+            }
+        }
+        
+        // Handle upload button click
+        uploadButton.addEventListener('click', function() {
             const file = fileInput.files[0];
             
             if (!file) {
@@ -114,10 +137,9 @@
             formData.append('docfile', file);
             
             // Show loading
-            document.getElementById('loading').style.display = 'block';
-            
-            // Reset message
-            document.getElementById('result-message').style.display = 'none';
+            loading.style.display = 'block';
+            resultMessage.style.display = 'none';
+            uploadButton.disabled = true;
             
             fetch('/upload', {
                 method: 'POST',
@@ -125,27 +147,32 @@
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById('loading').style.display = 'none';
+                loading.style.display = 'none';
                 
                 if (data.error) {
                     showMessage(data.error, 'error');
+                    uploadButton.disabled = false;
                 } else {
                     showMessage(data.message, 'success');
                     // Reset the form
-                    document.getElementById('upload-form').reset();
+                    fileInput.value = '';
+                    fileName.textContent = '';
+                    uploadButton.disabled = true;
                 }
             })
             .catch(error => {
-                document.getElementById('loading').style.display = 'none';
+                loading.style.display = 'none';
                 showMessage('Error uploading file: ' + error.message, 'error');
+                uploadButton.disabled = false;
             });
         });
         
         function showMessage(message, type) {
-            const messageElement = document.getElementById('result-message');
-            messageElement.textContent = message;
-            messageElement.className = 'result-message ' + type;
-            messageElement.style.display = 'block';
+            resultMessage.textContent = message;
+            resultMessage.className = type === 'success' 
+                ? 'result-message success-message' 
+                : 'result-message error-message';
+            resultMessage.style.display = 'block';
         }
     </script>
 </body>

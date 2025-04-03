@@ -1,60 +1,50 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Elasticsearch Connection Error</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-            background-color: #e6f2ff;  /* Light blue background */
-        }
-        .error-container {
-            background-color: #fff0f0;
-            border-left: 4px solid #ff3333;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        code {
-            background: #f4f4f4;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-family: monospace;
-        }
-        pre {
-            background: #f4f4f4;
-            padding: 10px;
-            border-radius: 3px;
-            overflow-x: auto;
-        }
-    </style>
+    <title>Mimiketech - Connection Error</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <h1>Mimiketech Search - Connection Error</h1>
-    
-    <div class="error-container">
-        <p><strong>Cannot connect to Elasticsearch.</strong> Please check your configuration.</p>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="{{ logo_path }}" alt="Mimiketech Logo" class="logo">
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h1><i class="fas fa-exclamation-triangle" style="color: #e74c3c;"></i> Connection Error</h1>
+            
+            <div class="result error-message">
+                <p><strong>Cannot connect to Elasticsearch.</strong> Please check your configuration.</p>
+            </div>
+            
+            <h2>Troubleshooting:</h2>
+            
+            <div class="result">
+                <ol>
+                    <li>Verify your Elasticsearch URL is correct</li>
+                    <li>Check that your API key has proper permissions</li>
+                    <li>Ensure the Elasticsearch service is running</li>
+                    <li>Check network connectivity to the Elasticsearch server</li>
+                </ol>
+                
+                <p>After addressing these issues, please restart the application.</p>
+            </div>
+        </div>
     </div>
     
-    <h2>Troubleshooting:</h2>
-    
-    <ol>
-        <li>Verify your Elasticsearch URL is correct</li>
-        <li>Check that your API key has proper permissions</li>
-        <li>Ensure the Elasticsearch service is running</li>
-        <li>Check network connectivity to the Elasticsearch server</li>
-    </ol>
-    
-    <p>After addressing these issues, please restart the application.</p>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mimiketech Search. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
     

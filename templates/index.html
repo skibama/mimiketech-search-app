@@ -1,122 +1,62 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Mimiketech Search</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #e6f2ff;  /* Light blue background */
-        }
-        .search-container {
-            margin-bottom: 20px;
-        }
-        input[type="text"] {
-            width: 70%;
-            padding: 10px;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px 15px;
-            font-size: 16px;
-            background-color: #4285f4;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .result {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: white;
-        }
-        .result-title {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        .highlight {
-            background-color: #ffff99;
-        }
-        .result-meta {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        .result-actions {
-            margin-top: 10px;
-        }
-        .download-btn {
-            display: inline-block;
-            padding: 5px 10px;
-            background-color: #34a853;
-            color: white;
-            text-decoration: none;
-            border-radius: 3px;
-            font-size: 14px;
-            margin-right: 10px;
-        }
-        .download-json-btn {
-            display: inline-block;
-            padding: 5px 10px;
-            background-color: #ea4335;
-            color: white;
-            text-decoration: none;
-            border-radius: 3px;
-            font-size: 14px;
-        }
-        .loading {
-            display: none;
-            margin: 20px 0;
-        }
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        .action-btn {
-            padding: 10px 15px;
-            font-size: 16px;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            text-align: center;
-        }
-        .list-all-btn {
-            background-color: #fbbc05;
-        }
-        .upload-btn {
-            background-color: #34a853;
-        }
-        .header {
-            margin-bottom: 30px;
-            text-align: center;
-        }
-    </style>
+    <title>Mimiketech Search</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="header">
-        <h1>Mimiketech Search</h1>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="{{ logo_path }}" alt="Mimiketech Logo" class="logo">
+            </div>
+            <nav class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/upload" class="nav-link">Upload</a>
+                <a href="/?listAll=true" class="nav-link">All Documents</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h1>Document Search</h1>
+            <p>Search through your documents or upload new ones to expand your knowledge base.</p>
+            
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-input" placeholder="Search documents...">
+                <button id="search-button" class="search-button">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="/?listAll=true" class="action-btn list-all-btn">
+                    <i class="fas fa-list-ul"></i>&nbsp; View All Documents
+                </a>
+<a href="/upload" class="action-btn upload-btn">
+                    <i class="fas fa-file-upload"></i>&nbsp; Upload New Document
+                </a>
+            </div>
+            
+            <div id="loading" class="loading">
+                <div class="loading-spinner"></div>
+                <p>Searching documents...</p>
+            </div>
+            
+            <div id="results"></div>
+        </div>
     </div>
     
-    <div class="search-container">
-        <input type="text" id="search-input" placeholder="Search documents...">
-        <button id="search-button">Search</button>
-    </div>
-    
-    <div class="button-container">
-        <a href="/list-all" class="action-btn list-all-btn">List All Documents</a>
-        <a href="/upload" class="action-btn upload-btn">Upload New Document</a>
-    </div>
-    
-    <div id="loading" class="loading">Searching...</div>
-    
-    <div id="results"></div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mimiketech Search. All rights reserved.</p>
+        </div>
+    </footer>
     
     <script>
         document.getElementById('search-button').addEventListener('click', performSearch);
@@ -142,12 +82,12 @@
                     loading.style.display = 'none';
                     
                     if (data.error) {
-                        results.innerHTML = `<p>Error: ${data.error}</p>`;
+                        results.innerHTML = `<div class="result error-message"><p>Error: ${data.error}</p></div>`;
                         return;
                     }
                     
                     if (data.hits.length === 0) {
-                        results.innerHTML = '<p>No results found.</p>';
+                        results.innerHTML = '<div class="result"><p>No results found. Try different search terms or <a href="/upload">upload new documents</a>.</p></div>';
                         return;
                     }
                     
@@ -155,7 +95,7 @@
                 })
                 .catch(error => {
                     loading.style.display = 'none';
-                    results.innerHTML = `<p>Error: ${error.message}</p>`;
+                    results.innerHTML = `<div class="result error-message"><p>Error: ${error.message}</p></div>`;
                 });
         }
         
@@ -181,11 +121,18 @@
                 resultsHtml += `
                     <div class="result">
                         <div class="result-title">${hit.title}</div>
-                        <div class="result-meta">File: ${hit.filename} ${hit.score ? `| Score: ${hit.score.toFixed(2)}` : ''}</div>
+                        <div class="result-meta">
+                            <i class="fas fa-file-alt"></i> ${hit.filename} 
+                            ${hit.score ? `<span style="margin-left: 10px;"><i class="fas fa-star"></i> Score: ${hit.score.toFixed(2)}</span>` : ''}
+                        </div>
                         ${highlightHtml ? `<div class="result-highlight">${highlightHtml}</div>` : ''}
                         <div class="result-actions">
-                            <a href="/download/${hit.id}" class="download-btn">Download Text</a>
-                            <a href="/download-json/${hit.id}" class="download-json-btn">Download JSON</a>
+                            <a href="/download/${hit.id}" class="action-button download-btn">
+                                <i class="fas fa-file-download"></i> Download Text
+                            </a>
+                            <a href="/download-json/${hit.id}" class="action-button download-json-btn">
+                                <i class="fas fa-code"></i> Download JSON
+                            </a>
                         </div>
                     </div>
                 `;
@@ -198,23 +145,31 @@
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('listAll') === 'true') {
             document.addEventListener('DOMContentLoaded', function() {
+                const loading = document.getElementById('loading');
+                const results = document.getElementById('results');
+                
+                loading.style.display = 'block';
+                
                 fetch('/list-all')
                     .then(response => response.json())
                     .then(data => {
+                        loading.style.display = 'none';
+                        
                         if (data.error) {
-                            document.getElementById('results').innerHTML = `<p>Error: ${data.error}</p>`;
+                            results.innerHTML = `<div class="result error-message"><p>Error: ${data.error}</p></div>`;
                             return;
                         }
                         
                         if (data.hits.length === 0) {
-                            document.getElementById('results').innerHTML = '<p>No documents found in the index.</p>';
+                            results.innerHTML = '<div class="result"><p>No documents found in the index. <a href="/upload">Upload some documents</a> to get started.</p></div>';
                             return;
                         }
                         
                         displayResults(data.hits, true);
                     })
                     .catch(error => {
-                        document.getElementById('results').innerHTML = `<p>Error: ${error.message}</p>`;
+                        loading.style.display = 'none';
+                        results.innerHTML = `<div class="result error-message"><p>Error: ${error.message}</p></div>`;
                     });
             });
         }
