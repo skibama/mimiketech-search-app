@@ -103,3 +103,4 @@
 2025-04-03 10:56:20,044 - INFO - Processing file: Monitoring web app info.docx
 2025-04-03 10:56:20,045 - ERROR - Error converting document Monitoring web app info.docx: Package not found at 'C:\elasticsearch-upload\Mimiketech uploads\Monitoring web app info.docx'
 2025-04-03 10:56:20,045 - ERROR - Error processing Monitoring web app info.docx: Package not found at 'C:\elasticsearch-upload\Mimiketech uploads\Monitoring web app info.docx'
+2025-04-03 11:24:28,194 - INFO - Document uploader service stopped
