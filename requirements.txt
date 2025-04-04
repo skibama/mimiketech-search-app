@@ -3,3 +3,4 @@ elasticsearch
 python-docx
 gunicorn
 werkzeug
+psutil
